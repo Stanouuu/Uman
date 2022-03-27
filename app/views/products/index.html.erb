@@ -1,0 +1,13 @@
+<%= image_tag 'nuage.png', class: "home-banner" %>
+<% @products.each_with_index do |product, index| %>
+  <% if(index % 3 == 0) %>
+    <div class="card-container">
+  <% end %>
+  <div class="card-prod">
+    <%= image_tag(@images.find(product.id).photo) %>
+    <div class="card-text"><%= product.title %> - <%= product.color%></div>
+  </div>
+  <% if(!@products[index + 1] || (( index + 1 )% 3 == 0 && index != 0)) %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,2 +1,17 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%= image_tag 'https://media.discordapp.net/attachments/952298956539449375/954776440677761024/IMG_7888.jpg?width=623&height=468', class: "home-banner" %>
+<% while(@count <= @products.size) %>
+    <div class="card-container">
+      <% short = 0 %>
+      <% while(short != 3 && @products[@count + short] ) %>
+      <div class="card-prod">
+        <%= image_tag(@images.find(@products[@count + short].id).photo) %>
+        <div class="card-text"><%= @products[@count + short].title %> - <%= @products[@count + short].color%></div>
+      </div>
+      <% short = short + 1 %>
+      <% end %>
+      <% @count = @count + 3 %>
+    </div>
+  <% if(short % 3 == 0) %>
+    <%= image_tag 'https://wallpaperboat.com/wp-content/uploads/2020/10/08/56171/j-cole-02.jpg', class: "secondary-banner" %>
+  <% end %>
+<% end %>
