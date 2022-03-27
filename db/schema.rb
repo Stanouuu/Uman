@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_22_073843) do
+ActiveRecord::Schema.define(version: 2022_03_22_104637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2022_03_22_073843) do
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
+  create_table "product_images", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.string "photo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_images_on_product_id"
+  end
+
   create_table "product_photos", force: :cascade do |t|
     t.bigint "product_id", null: false
     t.string "photo"
@@ -50,6 +58,7 @@ ActiveRecord::Schema.define(version: 2022_03_22_073843) do
 
   create_table "products", force: :cascade do |t|
     t.integer "price"
+    t.string "title"
     t.string "size"
     t.string "color"
     t.datetime "created_at", precision: 6, null: false
@@ -72,5 +81,6 @@ ActiveRecord::Schema.define(version: 2022_03_22_073843) do
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
   add_foreign_key "orders", "carts"
+  add_foreign_key "product_images", "products"
   add_foreign_key "product_photos", "products"
 end

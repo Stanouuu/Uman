@@ -7,10 +7,16 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+import { navScroll } from '../animations/navbar';
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+document.addEventListener('turbolinks:load', () => {
+  navScroll();
+})
 
 import "controllers"
 import "bootstrap"
